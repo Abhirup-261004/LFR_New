@@ -11,8 +11,8 @@ void motorInit()
   pinMode(RIGHT_MOTOR_PIN_2, OUTPUT);
   
   // Motor driver standby pin
-  pinMode(STBY, OUTPUT);
-  digitalWrite(STBY, LOW);  // Enable motor driver by default
+//   pinMode(STBY, OUTPUT);
+//   digitalWrite(STBY, LOW);  // Enable motor driver by default
   
   // Initialize motors to stop
   digitalWrite(LEFT_MOTOR_PIN_1,LOW);

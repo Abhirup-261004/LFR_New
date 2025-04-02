@@ -3,7 +3,7 @@
 #ifndef MOTORCONTROL_H
 #define MOTORCONTROL_H
 
-#define STBY 6
+// #define STBY 6
 
 #define LEFT_MOTOR_PIN_1 8
 #define LEFT_MOTOR_PIN_2 7

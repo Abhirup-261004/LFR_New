@@ -368,54 +368,54 @@ void controlMotors()
 	}
 }
 
-void parseBluetoothCommand() {
-  #if BLUETOOTH_TUNING_ENABLED
-  static char buffer[32];
-  static size_t idx = 0;
+// void parseBluetoothCommand() {
+//   #if BLUETOOTH_TUNING_ENABLED
+//   static char buffer[32];
+//   static size_t idx = 0;
   
-  while(Serial.available() > 0) {
-    char c = Serial.read();
+//   while(Serial.available() > 0) {
+//     char c = Serial.read();
     
-    // End of command
-    if(c == '\n' || c == '\r') {
-      buffer[idx] = '\0';
+//     // End of command
+//     if(c == '\n' || c == '\r') {
+//       buffer[idx] = '\0';
       
-      // Debugging line (optional)
-      // Serial.print("Received: "); Serial.println(buffer);
+//       // Debugging line (optional)
+//       // Serial.print("Received: "); Serial.println(buffer);
       
-      // Handle commands
-      if(strcmp(buffer, "stand") == 0 || buffer[0] == 's') {
-        shortBrake(200);
-        stop();
-        digitalWrite(STBY, LOW);
-        Serial.println("STANDBY");
-      }
-      else if(strcmp(buffer, "run") == 0 || buffer[0] == 'r') {
-        digitalWrite(STBY, HIGH);
-        Serial.println("RUNNING");
-      }
-      else if(buffer[0] == 'p' || buffer[0] == 'i' || buffer[0] == 'd' || buffer[0] == 'm') {
-        int value = atoi(buffer + 1); // Convert rest of string to int
+//       // Handle commands
+//       if(strcmp(buffer, "stand") == 0 || buffer[0] == 's') {
+//         shortBrake(200);
+//         stop();
+//         // digitalWrite(STBY, LOW);
+//         Serial.println("STANDBY");
+//       }
+//       else if(strcmp(buffer, "run") == 0 || buffer[0] == 'r') {
+//         // digitalWrite(STBY, HIGH);
+//         Serial.println("RUNNING");
+//       }
+//       else if(buffer[0] == 'p' || buffer[0] == 'i' || buffer[0] == 'd' || buffer[0] == 'm') {
+//         int value = atoi(buffer + 1); // Convert rest of string to int
         
-        if(value != 0 || buffer[1] == '0') { // Handle 0 values properly
-          switch(buffer[0]) {
-            case 'p': Kp = value; break;
-            case 'i': Ki = value; break;
-            case 'd': Kd = value; break;
-            case 'm': baseMotorSpeed = constrain(value, 0, 255); break;
-          }
-          Serial.print(buffer[0]); Serial.print(":"); Serial.println(value);
-        }
-      }
+//         if(value != 0 || buffer[1] == '0') { // Handle 0 values properly
+//           switch(buffer[0]) {
+//             case 'p': Kp = value; break;
+//             case 'i': Ki = value; break;
+//             case 'd': Kd = value; break;
+//             case 'm': baseMotorSpeed = constrain(value, 0, 255); break;
+//           }
+//           Serial.print(buffer[0]); Serial.print(":"); Serial.println(value);
+//         }
+//       }
       
-      idx = 0;
-    } 
-    else if(idx < sizeof(buffer)-1) {
-      buffer[idx++] = c;
-    }
-  }
-  #endif
-}
+//       idx = 0;
+//     } 
+//     else if(idx < sizeof(buffer)-1) {
+//       buffer[idx++] = c;
+//     }
+//   }
+//   #endif
+// }
 
 void setup() {
   // put your setup code here, to run once:
@@ -433,8 +433,8 @@ Serial.begin(9600);
   pinMode(LED, OUTPUT);
 
   motorInit();
-  pinMode(STBY, OUTPUT);
-  digitalWrite(STBY, LOW);
+  // pinMode(STBY, OUTPUT);
+  // digitalWrite(STBY, LOW);
 
   Serial.begin(9600);
 
@@ -498,7 +498,7 @@ void loop() {
   //   }
   // #endif
  
-  parseBluetoothCommand();
+  // parseBluetoothCommand();
   readSensors();
 	calculatePID();
 	controlMotors();
