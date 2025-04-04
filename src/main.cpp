@@ -28,7 +28,7 @@ int P = 0;
 int I = 0;
 int D = 0;
 int previousError = 0;
-int PID_value = 0;
+int PID_value = 0; 
 
 int TrackType= BLACK_LINE_WHITE_TRACK;
 
@@ -41,8 +41,8 @@ int S4=A4;
 int S5=A5;
 
 // Digital Pin Sensors
-int S6=2;
-int S7=3;
+int S6=13;
+int S7=12;
 
 int loopDelay = DEFAULT_LOOP_DELAY;
 int leftMotorOffset = 50;
@@ -57,10 +57,10 @@ uint8_t getSensorReadings()
   //Read Analog Sensor Values
   int Sen1=analogRead(S0);
   int Sen2=analogRead(S1);
-  int Sen3=analogRead(S2);
-  int Sen4=analogRead(S3);
-  int Sen5=analogRead(S4);
-  int Sen6=analogRead(S5);
+  int Sen3=digitalRead(S2);
+  int Sen4=digitalRead(S3);
+  int Sen5=digitalRead(S4);
+  int Sen6=digitalRead(S5);
 
   //Read Digital Sensor Values
   int Sen7=digitalRead(S6);
